@@ -1,0 +1,3 @@
+[submodule "project_layout/python_project_template"]
+	path = project_layout/python_project_template
+	url = https://github.com/zardosht/python_project_template
