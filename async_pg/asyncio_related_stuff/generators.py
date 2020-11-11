@@ -1,4 +1,10 @@
 
+
+# From here: 
+# https://snarky.ca/how-the-heck-does-async-await-work-in-python-3-5/
+# How the heck does async/await work in Python 3.5?
+
+
 # not a generator
 
 def eager_range(up_to):

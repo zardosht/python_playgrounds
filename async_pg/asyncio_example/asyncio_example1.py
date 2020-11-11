@@ -1,6 +1,8 @@
 import time
 import asyncio
 
+# From here: 
+# https://www.youtube.com/watch?v=tSLDcRkgTsY
 
 # COOPERATIVE MULTI-TASKING! (a.k.a Non-Preemptive Multi-tasking)
 # A function suspends its execution voluntarily and hands over

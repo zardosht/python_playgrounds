@@ -1,3 +1,8 @@
+
+# From here: 
+# https://snarky.ca/how-the-heck-does-async-await-work-in-python-3-5/
+# How the heck does async/await work in Python 3.5?
+
 def lazy_range(up_to):
     """Generator to return the sequence of integers from 0 to up_to, exclusive."""
     index = 0
