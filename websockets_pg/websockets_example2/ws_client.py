@@ -2,6 +2,10 @@ import asyncio
 import websockets
 import datetime
 
+# From here: 
+# https://www.youtube.com/watch?v=pcb4j8Itga4
+
+
 async def my_connect():
     async with websockets.connect("ws://localhost:3000") as websocket:
         for i in range(100):

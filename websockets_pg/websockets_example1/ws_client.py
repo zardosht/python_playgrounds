@@ -1,6 +1,8 @@
 import asyncio
 import websockets
 
+# From here: 
+# https://www.youtube.com/watch?v=7i0-lYjtvIE
 
 async def message():
     async with websockets.connect("ws://localhost:1234") as socket:

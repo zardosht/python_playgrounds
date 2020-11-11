@@ -1,6 +1,11 @@
 import asyncio
 import websockets
 
+
+# From here: 
+# https://www.youtube.com/watch?v=pcb4j8Itga4
+
+
 # callback for websockets.serve()
 async def my_accept(websocket, path):
     i = 0
