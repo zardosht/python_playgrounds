@@ -9,37 +9,27 @@ import time
 _stop = False
 
 def read_klv():
-        
-    # klvproc = subprocess.Popen(["ffmpeg", "-i", "udp://127.0.0.1:11111", 
-    #                            "-map",  "0:1",  "-codec", "copy",  "-f", "data",  "-"], 
-    #                            stdout=subprocess.PIPE, 
-    #                            stderr=subprocess.PIPE)
+    # TODO: read the command from config and split it. 
+    klvproc = subprocess.Popen(["ffmpeg", "-i", "udp://127.0.0.1:11111", 
+                               "-map",  "0:1",  "-codec", "copy",  
+                               "-f", "data",  "-"], 
+                               stdout=subprocess.PIPE, 
+                               stderr=subprocess.PIPE)
     
-    # print("FFMPEG command called: ", klvproc.args)
-    # while not _stop:
-    #     with open("dummy.log", "w") as logfile: 
-    #         line = klvproc.stderr.readline()
-    #         err = line.decode().rstrip("\r\n")
-    #         print("LOG: ", err)
-    #         logfile.write(err)
+    print("FFMPEG command called: ", klvproc.args)
 
-    #     with open("dummy.klv", "bw") as outfile:   
-    #         data = klvproc.stdout.read(1024)
-    #         # print(data)
-    #         outfile.write(data)
-
-    # print("Return code: ", klvproc.returncode)
+    # If we need to get the stderr of ffmpeg as well, we should open 
+    # another thread.
+    with open("dummy.klv", "bw") as outfile:   
+        while not _stop:
+            data = klvproc.stdout.read(1024)
+            outfile.write(data)
     
-    a = 1
-    print("Starting endless loop till _stop is set.")
-    while not _stop:
-        print("aaaa: ", a)
-        a += 1
-        time.sleep(1)
-
-    print("_stop is set. Loop exited. ")
-
-
+    klvproc.stdout.close()
+    klvproc.terminate()  # same as writing q to stdin, return code 255
+    klvproc.wait()
+    print("Return code: ", klvproc.returncode) # 255, received_sigterm
+    
 
 def stop():
     global _stop
