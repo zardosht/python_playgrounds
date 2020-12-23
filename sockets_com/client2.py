@@ -65,3 +65,21 @@ host = socket.gethostname()
 s.connect((host, port))
 print(f"Client: Socket connected to {host}:{port}")
 
+while True: 
+    full_msg = ""
+    new_msg = True
+    while True:
+        chunk = s.recv(16)
+        if new_msg: 
+            print(f"New message length: {chunk[:HEADERSIZE]}")
+            msglen = int(chunk[:HEADERSIZE])
+            new_msg = False
+
+        full_msg += chunk.decode("utf-8")
+        if len(full_msg) - HEADERSIZE == msglen:
+            print("Full message received.")
+            print(f"Full Message: {full_msg[HEADERSIZE:]}")
+            new_msg = True
+            full_msg = ""
+        
+    print(full_msg)
